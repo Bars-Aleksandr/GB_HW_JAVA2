@@ -101,13 +101,12 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
 
-### Mac OS ###
-.DS_Store
-/.idea/
-/src/main/java/org/example/Task1.java
+
 
 ### My ignore ###
 pom.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/vcs.xml
