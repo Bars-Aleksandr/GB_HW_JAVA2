@@ -13,7 +13,21 @@ public class Task1 {
         System.out.println("Random number = " + i);
         int n = findHighBitNumber(i);
         System.out.println("MSb = " + n);
+        System.out.println("Array of multiples:");
         printArrayInt(arrMultiplesNum(i, (int) Short.MAX_VALUE, n));
+        System.out.println();
+        System.out.println("Array of  non-multiples:");
+        printArrayInt(arrNonMultiplesNum((int) Short.MIN_VALUE, i, n));
+    }
+
+    private static int[] arrNonMultiplesNum(int from, int to, int mult) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = from; i < to; i++) {
+            if (i % mult != 0) {
+                list.add(i);
+            }
+        }
+        return arrayListToIntArray(list);
     }
 
     public static int[] arrMultiplesNum(int from, int to, int mult){
@@ -33,7 +47,6 @@ public class Task1 {
         return arrInt;
     }
     public static void printArrayInt(int[] arr){
-        System.out.println("Array of multiples:");
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
