@@ -22,12 +22,10 @@ public class Task1 {
     private static ArrayList intToBinRevers(int i) {
 
         ArrayList arrBins = new ArrayList();
-        int count = 0;
         if (i !=0) {
             while (i != 0) {
                 arrBins.add(i % 2);
                 i = i / 2;
-                count += 1;
             }
         } else {
             arrBins.add(i);
