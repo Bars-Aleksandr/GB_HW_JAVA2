@@ -13,8 +13,33 @@ public class Task1 {
         System.out.println("Random number = " + i);
         int n = findHighBitNumber(i);
         System.out.println("MSb = " + n);
+        System.out.println("Short.MAX_VALUE = " + Short.MAX_VALUE);
+        //int[] m1 = new int[quantityMultiplesNum(i, Short.MAX_VALUE, n)];
+        printArrayInt(arrMultiplesNum(i, (int) Short.MAX_VALUE, n));
     }
 
+    public static int[] arrMultiplesNum(int from, int to, int mult){
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = from; i < to; i++) {
+            if (i % mult == 0) {
+                list.add(i);
+            }
+        }
+        return arrayListToIntArray(list);
+    }
+    public static int[] arrayListToIntArray(ArrayList<Integer> arrList){
+        int[] arrInt = new int[arrList.size()-1];
+        for (int i = 0; i <arrList.size()-1 ; i++) {
+            arrInt[i] = arrList.get(i);
+        }
+        return arrInt;
+    }
+    public static void printArrayInt(int[] arr){
+        System.out.println("Array of multiples:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
     public static int findHighBitNumber(int dec) {
         return intToBinRevers(dec).size()-1;
     }
@@ -32,4 +57,13 @@ public class Task1 {
         }
         return arrBins;
     }
+//    private static int quantityMultiplesNum(int from, int to, int mult){
+//        int count = 0;
+//        for (int i = from; i < to; mult++) {
+//            if (i % mult == 0) {
+//                count++;
+//            }
+//        }
+//        return count;
+//    }
 }
