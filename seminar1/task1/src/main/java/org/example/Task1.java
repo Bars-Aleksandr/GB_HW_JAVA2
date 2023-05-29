@@ -14,26 +14,26 @@ public class Task1 {
         int n = findHighBitNumber(i);
         System.out.println("MSb = " + n);
         System.out.println("Array of multiples:");
-        printArrayInt(arrMultiplesNum(i, (int) Short.MAX_VALUE, n));
+        printArrayInt(arrMultiplesNum(i, Short.MAX_VALUE, n));
         System.out.println();
         System.out.println("Array of  non-multiples:");
-        printArrayInt(arrNonMultiplesNum((int) Short.MIN_VALUE, i, n));
+        printArrayInt(arrNonMultiplesNum(Short.MIN_VALUE, i, n));
     }
 
-    private static int[] arrNonMultiplesNum(int from, int to, int mult) {
-        ArrayList<Integer> list = new ArrayList<Integer>();
+    public static int[] arrNonMultiplesNum(int from, int to, int div) {
+        ArrayList<Integer> list = new ArrayList<>();
         for (int i = from; i < to; i++) {
-            if (i % mult != 0) {
+            if (i % div != 0) {
                 list.add(i);
             }
         }
         return arrayListToIntArray(list);
     }
 
-    public static int[] arrMultiplesNum(int from, int to, int mult){
-        ArrayList<Integer> list = new ArrayList<Integer>();
+    public static int[] arrMultiplesNum(int from, int to, int div){
+        ArrayList<Integer> list = new ArrayList<>();
         for (int i = from; i < to; i++) {
-            if (i % mult == 0) {
+            if (i % div == 0) {
                 list.add(i);
             }
         }
@@ -47,17 +47,17 @@ public class Task1 {
         return arrInt;
     }
     public static void printArrayInt(int[] arr){
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+        for (int j : arr) {
+            System.out.print(j + " ");
         }
     }
     public static int findHighBitNumber(int dec) {
         return intToBinRevers(dec).size()-1;
     }
 
-    private static ArrayList intToBinRevers(int i) {
+    private static ArrayList<Integer> intToBinRevers(int i) {
 
-        ArrayList arrBins = new ArrayList();
+        ArrayList<Integer> arrBins = new ArrayList<>();
         if (i !=0) {
             while (i != 0) {
                 arrBins.add(i % 2);
