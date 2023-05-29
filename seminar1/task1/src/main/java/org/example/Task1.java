@@ -13,8 +13,6 @@ public class Task1 {
         System.out.println("Random number = " + i);
         int n = findHighBitNumber(i);
         System.out.println("MSb = " + n);
-        System.out.println("Short.MAX_VALUE = " + Short.MAX_VALUE);
-        //int[] m1 = new int[quantityMultiplesNum(i, Short.MAX_VALUE, n)];
         printArrayInt(arrMultiplesNum(i, (int) Short.MAX_VALUE, n));
     }
 
@@ -57,13 +55,4 @@ public class Task1 {
         }
         return arrBins;
     }
-//    private static int quantityMultiplesNum(int from, int to, int mult){
-//        int count = 0;
-//        for (int i = from; i < to; mult++) {
-//            if (i % mult == 0) {
-//                count++;
-//            }
-//        }
-//        return count;
-//    }
 }
