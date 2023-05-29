@@ -16,11 +16,7 @@ public class Task1 {
     }
 
     public static int findHighBitNumber(int dec) {
-
-        ArrayList arrBits = new ArrayList();
-        arrBits = intToBinRevers(dec);
-        int positionNum = arrBits.size()-1;
-        return positionNum;
+        return intToBinRevers(dec).size()-1;
     }
 
     private static ArrayList intToBinRevers(int i) {
