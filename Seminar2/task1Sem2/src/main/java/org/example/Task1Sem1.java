@@ -6,11 +6,15 @@ package org.example;
 //        * Параметры для фильтрации: {"name":"Ivanov", "country":"Russia",
 //        * "city":"Moscow", "age":"null"}
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+
 import java.util.Random;
 import java.util.Scanner;
 
-//import java.util.HashMap;
-//import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 //
 //public class Task1Sem1 {
 //    public static void main(String[] args) {
@@ -32,45 +36,100 @@ import java.util.Scanner;
 //    }
 //
 //}
+//public class Task1Sem1 {
+//    public static void main(String[] args) {
+//        System.out.print("Enter the size of the array: ");
+//        Scanner console = new Scanner(System.in);
+//        int sizeArr = console.nextInt();
+//        int[] myArr = createArrayRND(sizeArr);
+//        inputArray("initial array: ", myArr);
+//        System.out.println();
+//        sortArrayBubbleCons(myArr);
+//    }
+//
+//    private static void sortArrayBubbleCons(int[] arr) {
+//        int temp = 0;
+//        for (int i = 1; i < arr.length; i++) {
+//            for (int j = 0; j < arr.length - i; j++) {
+//                if (arr[j] > arr[j + 1]) {
+//                    temp = arr[j + 1];
+//                    arr[j + 1] = arr[j];
+//                    arr[j] = temp;
+//                }
+//                inputArray("interior FOR", arr);
+//            }
+//            inputArray("external FOR", arr);
+//        }
+//    }
+//
+//    private static void inputArray(String msg, int[] arr) {
+//        System.out.println(msg + ":");
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.print(arr[i] + " ");
+//        }
+//    }
+//
+//    private static int[] createArrayRND(int size) {
+//        int[] arr = new int[size];
+//        Random rnd = new Random();
+//        for (int i = 0; i < size; i++) {
+//            arr[i] = rnd.nextInt(100);
+//        }
+//        return arr;
+//    }
+//}
+
+//3) Дана json-строка (можно сохранить в файл и читать из файла)
+//[{"фамилия":"Иванов","оценка":"5","предмет":"Математика"},{"фамилия":"Петрова","оценка":"4","предмет":"Информатика"},{"фамилия":"Краснов","оценка":"5","предмет":"Физика"}]
+// Написать метод(ы), который распарсит json и, используя StringBuilder, создаст строки вида: Студент [фамилия] получил [оценка] по предмету [предмет].
+// Пример вывода:
+// Студент Иванов получил 5 по предмету Математика.
+// Студент Петрова получил 4 по предмету Информатика.
+// Студент Краснов получил 5 по предмету Физика.
+
 public class Task1Sem1 {
-    public static void main(String[] args) {
-        System.out.print("Enter the size of the array: ");
-        Scanner console = new Scanner(System.in);
-        int sizeArr = console.nextInt();
-        int[] myArr = createArrayRND(sizeArr);
-        inputArray("initial array: ", myArr);
-        System.out.println();
-        sortArrayBubbleCons(myArr);
-    }
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(Paths.get("./src/main/java/org/example/inTask3.txt"), StandardCharsets.UTF_8.name());
+        String jsonLine = scanner.useDelimiter("\\A").next();
+        jsonLineToStr(jsonLine);
+        scanner.close();
 
-    private static void sortArrayBubbleCons(int[] arr) {
-        int temp = 0;
-        for (int i = 1; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    temp = arr[j + 1];
-                    arr[j + 1] = arr[j];
-                    arr[j] = temp;
-                }
-                inputArray("interior FOR", arr);
+    }
+    public static void jsonLineToStr(String jString) {
+        StringBuilder resultStr = new StringBuilder();
+        String[] separStr = jString.split("\"");
+        Map<String, String> jsonToMap = new HashMap();
+        int j = 0;
+        boolean case1 = false;
+        boolean case2 = false;
+        boolean case3 = false;
+        for (String i : separStr) {
+            j++;
+            switch (i.toLowerCase()) {
+                case "фамилия":
+                    jsonToMap.put(i, separStr[j + 1]);
+                    case1 = true;
+                    break;
+                case "оценка":
+                    jsonToMap.put(i, separStr[j + 1]);
+                    case2 = true;
+                    break;
+                case "предмет":
+                    jsonToMap.put(i, separStr[j + 1]);
+                    case3 = true;
+                    break;
             }
-            inputArray("external FOR", arr);
+            // Студент [фамилия] получил [оценка] по предмету [предмет]
+            if (case1 && case2 && case3) {
+                resultStr.append("Студент " + jsonToMap.get("фамилия") + " получил " +
+                        jsonToMap.get("оценка") + " по предмету " + jsonToMap.get("предмет"));
+                System.out.println(resultStr);
+                case1 = case2 = case3 = false;
+                resultStr.setLength(0);
+            }
+
         }
+
     }
 
-    private static void inputArray(String msg, int[] arr) {
-        System.out.println(msg + ":");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-    }
-
-    private static int[] createArrayRND(int size) {
-        int[] arr = new int[size];
-        Random rnd = new Random();
-        for (int i = 0; i < size; i++) {
-            arr[i] = rnd.nextInt(100);
-        }
-        return arr;
-    }
 }
