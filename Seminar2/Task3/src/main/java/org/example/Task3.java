@@ -20,11 +20,11 @@ public class Task3 {
         listInt.sort(Comparator.naturalOrder());
         System.out.println("Minimum number:" + listInt.get(0));
         System.out.println("Maximum number:" + listInt.get(listInt.size()-1));
-        System.out.println("Average Value:" + findsAverageValue(listInt));
+        System.out.printf("Average Value:" + "%.2f", findsAverageValue(listInt));
     }
 
     private static double findsAverageValue(ArrayList<Integer> list) {
-        int sum = 0;
+        double sum = 0.0;
         for (int i = 0; i < list.size(); i++) {
             sum = sum + list.get(i);
         }
