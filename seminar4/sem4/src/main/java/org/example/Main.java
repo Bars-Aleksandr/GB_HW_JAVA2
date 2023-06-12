@@ -21,7 +21,7 @@ public class Main {
         sortAge();
         System.out.println("Sorted list by age: ");
         writeDataConsole();
-        System.out.println(": ");
+        System.out.println("Sorted list by gender: ");
         sortGender();
         writeDataConsole();
     }
