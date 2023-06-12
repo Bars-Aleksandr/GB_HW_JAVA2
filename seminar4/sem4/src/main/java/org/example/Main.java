@@ -18,13 +18,33 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         readDataFile();
         writeDataConsole();
+        sortAge();
+        System.out.println("Sorted list: ");
+        writeDataConsole();
+    }
 
+    private static void sortAge() {
+        for (int i = 0; i < id.size()-1; i++) {
+            int maxAge = age.get(id.get(i));
+            int indexMax = i;
+            for (int j = i + 1; j < id.size(); j++) {
+                if (maxAge > age.get(id.get(j))){
+                    indexMax = j;
+                    maxAge = age.get(id.get(j));
+                }
+            }
+            if (indexMax != i){
+                int tmp = id.get(i);
+                id.set(i, id.get(indexMax));
+                id.set(indexMax, tmp);
+            }
 
+        }
     }
 
     private static void writeDataConsole() {
         for (int i = 0; i < id.size(); i++) {
-            System.out.println(lastname.get(i) + " " + firstname.get(i).toUpperCase().charAt(0) + ". " + patronymic.get(i).toUpperCase().charAt(0) + ". " + age.get(i) + " " + gender.get(i));
+            System.out.println(id.get(i) + "-id  " + lastname.get(id.get(i)) + " " + firstname.get(id.get(i)).toUpperCase().charAt(0) + ". " + patronymic.get(id.get(i)).toUpperCase().charAt(0) + ". " + age.get(id.get(i)) + " " + gender.get(id.get(i)));
         }
     }
 
