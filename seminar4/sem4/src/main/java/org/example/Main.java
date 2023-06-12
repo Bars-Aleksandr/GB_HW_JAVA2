@@ -23,7 +23,6 @@ public class Main {
     }
 
     private static void writeDataConsole() {
-        String res;
         for (int i = 0; i < id.size(); i++) {
             System.out.println(lastname.get(i) + " " + firstname.get(i).toUpperCase().charAt(0) + ". " + patronymic.get(i).toUpperCase().charAt(0) + ". " + age.get(i) + " " + gender.get(i));
         }
