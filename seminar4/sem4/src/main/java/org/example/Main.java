@@ -18,27 +18,17 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         readDataFile();
         writeDataConsole();
-//        sortAge();
-//        System.out.println("Sorted list by age: ");
-//        writeDataConsole();
-        System.out.println("Sorted list by gender: ");
+        sortAge();
+        System.out.println("Sorted list by age: ");
+        writeDataConsole();
+        System.out.println(": ");
         sortGender();
         writeDataConsole();
     }
 
     private static void sortGender() {
-//        for (int i = 0; i < id.size()-1; i++) {
-//            for (int j = i; j < id.size() - 1; j++) {
-//                if (!gender.get(id.get(j)).equals(gender.get(id.get(j+1)))) {
-//                    int tmp = id.get(j);
-//                    id.set(j, id.get(j+1));
-//                    id.set(j+1, tmp);
-//                }
-//            }
-//
-//        }
         for (int i = 0; i < id.size() / 2; i++) {
-            if (gender.get(id.get(i)).toLowerCase().equals("м")) {
+            if (gender.get(id.get(i)).equalsIgnoreCase("м")) {
                 gender.addLast(gender.get(id.get(i)));
                 gender.remove(id.get(i));
                 id.addLast(id.get(i));
