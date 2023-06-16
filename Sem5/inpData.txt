@@ -1,0 +1,6 @@
+left : step of the left
+right : step of the right
+up : step of the up
+down : step of the down
+space : to jump
+alt : to run
