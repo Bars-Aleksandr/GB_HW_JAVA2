@@ -23,11 +23,22 @@ public class Main {
         outputValueMap(hashMap);
         hashMap2 = createHashMap2();
         outputMap(hashMap2);
-//        methodWithoutMerge(hashMap, hashMap2);
+        methodWithoutMerge(hashMap, hashMap2);
+        methodWithMerge(hashMap, hashMap2);
     }
 
+    private static void methodWithMerge(HashMap<String, String> hash1, HashMap<String, String> hash2) {
+        hash2.forEach((kH2, vH2) -> hash1.merge(kH2, vH2,(v1, v2) -> vH2 + " " + v2));
+        System.out.println("C методом merge");
+        outputMap(hash2);
+    }
 
-
+    //        Объеденить значения во втором множестве и первом если ключи совподают.
+    private static void methodWithoutMerge(HashMap<String, String> hash1, HashMap<String, String> hash2) {
+        hash1.forEach((kH1, vH1) -> hash2.computeIfPresent(kH1,(kH2, vH2) -> vH2 + " " + vH1));
+        System.out.println("Без метода merge");
+        outputMap(hash2);
+    }
 
 
     private static HashMap<String, String> createHashMap2() {
