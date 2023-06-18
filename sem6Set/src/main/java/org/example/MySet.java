@@ -23,7 +23,7 @@ class MySet <T>{
     public String toString() {
         StringBuilder resSB  = new StringBuilder("[");
         Iterator<T> iter = hashMap.keySet().iterator();
-        int count = 0;
+
         while (iter.hasNext()){
             resSB.append(iter.next()+",");
         }
